@@ -1,0 +1,83 @@
+﻿@page "/"
+@using Microsoft.Extensions.Logging
+@inject ILogger<Produto> Logger
+
+<EditForm Model="@Produto" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="row">
+        <div class="col">
+            <p>Nome</p>
+            <input @bind="@Produto.Nome" />
+            <p>Descrição </p>
+            <input @bind="@Produto.Descricao" />
+            <p>Preco </p>
+            <input @bind="@Produto.Preco" />
+            <p>Foto</p>
+            <input @bind="@Produto.Foto"
+                placeholder="https://image.shutterstock.com/image-vector/creative-modern-img-letter-logo-260nw-1780496255.jpg" />
+            <p>DataCadastro</p>
+            <input @bind="@Produto.DataCadastro" />
+        </div>
+        <div class="col">
+            <p>Quantidade</p>
+            <input placeholder="$" pattern="[0-9.,]+" @bind="@Estoque.Quantidade" />
+            <p>Cor </p>
+            <input @bind="@Estoque.Cor" />
+            <p>Tamanho </p>
+            <input @bind="@Estoque.Tamanho" />
+        </div>
+        <button @onclick="@SaveProduto" style="width: 5%;">Salvar</button>
+    </div>
+    <br>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Preco</th>
+                <th scope="col">Foto</th>
+                <th scope="col">DataCadastro</th>
+                <th scope="col">Quantidade</th>
+                <th scope="col">Cor</th>
+                <th scope="col">Tamanho</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @foreach (var item in ListaProdutos)
+                {
+                    <td>
+                        @item
+                    </td>
+                }
+            </tr>
+        </tbody>
+    </table>
+</EditForm>
+@code {
+    private List<String> ListaProdutos = new();
+    private Produto Produto = new Produto();
+    private ProdutoEstoque Estoque = new ProdutoEstoque();
+    public async Task SaveProduto()
+    {
+
+        ListaProdutos.Add(Produto.Nome);
+        ListaProdutos.Add(Produto.Descricao);
+        ListaProdutos.Add(Produto.Preco.ToString());
+        ListaProdutos.Add(Produto.Foto);
+        ListaProdutos.Add(Produto.DataCadastro);
+
+        ListaProdutos.Add(Estoque.Quantidade.ToString());
+        ListaProdutos.Add(Estoque.Cor);
+        ListaProdutos.Add(Estoque.Tamanho);
+
+        await File.WriteAllLinesAsync(@"C:\teste.txt", ListaProdutos);
+
+    }
+    public void HandleValidSubmit()
+    {
+        Logger.LogInformation("Ajeitar campos");
+    }
+}
