@@ -811,5 +811,5 @@ C:\Users\viniv\source\repos\cafeProva\blazorProva1\obj\Debug\net6.0\BlazorProva1
 C:\Users\viniv\source\repos\cafeProva\blazorProva1\obj\Debug\net6.0\refint\BlazorProva1.dll
 C:\Users\viniv\source\repos\cafeProva\blazorProva1\obj\Debug\net6.0\BlazorProva1.pdb
 C:\Users\viniv\source\repos\cafeProva\blazorProva1\obj\Debug\net6.0\ref\BlazorProva1.dll
-C:\Users\viniv\source\repos\CafeProva\blazorProva1\obj\Debug\net6.0\build-gz\vG7QFNM0.gz
-C:\Users\viniv\source\repos\CafeProva\blazorProva1\obj\Debug\net6.0\build-gz\trwqbJFH.gz
+C:\Users\viniv\source\repos\CafeProva\blazorprova1\obj\Debug\net6.0\build-gz\SBr9JF+w.gz
+C:\Users\viniv\source\repos\CafeProva\blazorprova1\obj\Debug\net6.0\build-gz\qQgbD1iN.gz

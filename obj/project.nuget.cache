@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "o+CmrWBs1/dYxzf2K14wingnex9J5A3hCHq8lG9OABHp64uJflD2KPr/EtTkS3FHRW+zmXrFMS4rvdNIUSUNWA==",
+  "dgSpecHash": "1gAMSnWkbThPpXWbBHPV8h0V1MqwXEEm86DNgVuxSzgirFv1ufatnbC+V4WKhDUIvEOw7doJhfQoHeiN9DQDRw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\viniv\\source\\repos\\CafeProva\\blazorProva1\\BlazorProva1.csproj",
+  "projectFilePath": "C:\\Users\\viniv\\source\\repos\\CafeProva\\BlazorProva1\\BlazorProva1.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\viniv\\.nuget\\packages\\blazored.localstorage\\4.2.0\\blazored.localstorage.4.2.0.nupkg.sha512",
     "C:\\Users\\viniv\\.nuget\\packages\\microsoft.aspnetcore.authorization\\6.0.5\\microsoft.aspnetcore.authorization.6.0.5.nupkg.sha512",
     "C:\\Users\\viniv\\.nuget\\packages\\microsoft.aspnetcore.components\\6.0.5\\microsoft.aspnetcore.components.6.0.5.nupkg.sha512",
     "C:\\Users\\viniv\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\6.0.5\\microsoft.aspnetcore.components.analyzers.6.0.5.nupkg.sha512",

@@ -1,83 +1,54 @@
 ﻿@page "/"
-@using Microsoft.Extensions.Logging
-@inject ILogger<Produto> Logger
+@inject IJSRuntime JsRuntime
+@inject BlazorProva1.Service.IService Service
 
-<EditForm Model="@Produto" OnValidSubmit="@HandleValidSubmit">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-    <div class="row">
-        <div class="col">
-            <p>Nome</p>
-            <input @bind="@Produto.Nome" />
-            <p>Descrição </p>
-            <input @bind="@Produto.Descricao" />
-            <p>Preco </p>
-            <input @bind="@Produto.Preco" />
-            <p>Foto</p>
-            <input @bind="@Produto.Foto"
-                placeholder="https://image.shutterstock.com/image-vector/creative-modern-img-letter-logo-260nw-1780496255.jpg" />
-            <p>DataCadastro</p>
-            <input @bind="@Produto.DataCadastro" />
-        </div>
-        <div class="col">
-            <p>Quantidade</p>
-            <input placeholder="$" pattern="[0-9.,]+" @bind="@Estoque.Quantidade" />
-            <p>Cor </p>
-            <input @bind="@Estoque.Cor" />
-            <p>Tamanho </p>
-            <input @bind="@Estoque.Tamanho" />
-        </div>
-        <button @onclick="@SaveProduto" style="width: 5%;">Salvar</button>
-    </div>
-    <br>
-    <br>
-    <table class="table">
-        <thead>
+<a href="/add">Criar Novo</a>
+
+<table class='table'>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Descricao</th>
+            <th>Preço</th>
+            <th>Foto</th>
+            <th>DataCadastro</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var produto in produtos)
+        {
             <tr>
-                <th scope="col">Nome</th>
-                <th scope="col">Descrição</th>
-                <th scope="col">Preco</th>
-                <th scope="col">Foto</th>
-                <th scope="col">DataCadastro</th>
-                <th scope="col">Quantidade</th>
-                <th scope="col">Cor</th>
-                <th scope="col">Tamanho</th>
+                <td>@produto.Id</td>
+                <td>@produto.Nome</td>
+                <td>@produto.Descricao</td>
+                <td>@produto.Preco</td>
+                <td>@produto.Foto</td>
+                <td>@produto.DataCadastro</td>
+                <td> |
+                    <a href='#' @onclick="async () => await DeleteCustomer(produtos.id)">Deletar</a>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            <tr>
-                @foreach (var item in ListaProdutos)
-                {
-                    <td>
-                        @item
-                    </td>
-                }
-            </tr>
-        </tbody>
-    </table>
-</EditForm>
+
+        }
+    </tbody>
+</table>
+
 @code {
-    private List<String> ListaProdutos = new();
-    private Produto Produto = new Produto();
-    private ProdutoEstoque Estoque = new ProdutoEstoque();
-    public async Task SaveProduto()
+    List<Produto> produtos;
+
+    async Task DeleteCustomer(Guid id)
     {
-
-        ListaProdutos.Add(Produto.Nome);
-        ListaProdutos.Add(Produto.Descricao);
-        ListaProdutos.Add(Produto.Preco.ToString());
-        ListaProdutos.Add(Produto.Foto);
-        ListaProdutos.Add(Produto.DataCadastro);
-
-        ListaProdutos.Add(Estoque.Quantidade.ToString());
-        ListaProdutos.Add(Estoque.Cor);
-        ListaProdutos.Add(Estoque.Tamanho);
-
-        await File.WriteAllLinesAsync(@"C:\teste.txt", ListaProdutos);
-
+        bool confirmed = await JsRuntime.InvokeAsync<bool>("confirm", "Tem certeza que deseja deletar?");
+        if (confirmed is false)
+            return;
+        var ProdutoRemover = produtos.FirstOrDefault(c => c.Id.Equals(id));
+        produtos.Remove(ProdutoRemover);
+        await Service.saveProdutos(produtos);
     }
-    public void HandleValidSubmit()
+
+    protected override async Task OnInitializedAsync()
     {
-        Logger.LogInformation("Ajeitar campos");
+        produtos = await Service.GetProdutos();
     }
 }

@@ -1,0 +1,62 @@
+@page "/add"
+@using Microsoft.Extensions.Logging
+@inject ILogger<Produto> Logger
+
+<EditForm Model="@Produto" OnValidSubmit="@saveForm">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="exampleInputEmail">Nome</label>
+        <input type="email" @bind-value="Produto.Nome" class="form-control" id="exampleInputNome"
+            aria-describedby="emailHelp" placeholder="Digite seu Nome">
+        <ValidationMessage For="@(() => Produto.Nome)" />
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail">Descricao</label>
+        <input type="email" @bind-value="Produto.Descricao" class="form-control" id="exampleInputDescricao"
+            aria-describedby="emailHelp" placeholder="Digite sua Descricao">
+        <ValidationMessage For="@(() => Produto.Descricao)" />
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail">Preco</label>
+        <input type="email" @bind-value="Produto.Preco" class="form-control" id="exampleInputPreco"
+            aria-describedby="emailHelp" placeholder="Digite sua Preco">
+        <ValidationMessage For="@(() => Produto.Preco)" />
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputEmail">Foto</label>
+        <input type="email" @bind-value="Produto.Foto" class="form-control" id="exampleInputFoto"
+            aria-describedby="emailHelp" placeholder="Digite sua Foto">
+        <ValidationMessage For="@(() => Produto.Foto)" />
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputEmail">DataCadastro</label>
+        <input type="email" @bind-value="Produto.DataCadastro" class="form-control" id="exampleInputDataCadastro"
+            aria-describedby="emailHelp" placeholder="Digite sua DataCadastro">
+        <ValidationMessage For="@(() => Produto.DataCadastro)" />
+    </div>
+    <br />
+    <br />
+    <button @onclick="cancelForm" class="btn btn-danger">Cancelar</button>
+    <button class="btn btn-primary" type="submit">Salvar</button>
+</EditForm>
+@code {
+    [Parameter]
+    public EventCallback Save { get; set; }
+    private List<String> ListaProdutos = new();
+
+    public Produto Produto = new Produto();
+    private ProdutoEstoque Estoque = new ProdutoEstoque();
+    async Task saveForm()
+    {
+        await Save.InvokeAsync();
+    }
+
+    async Task cancelForm()
+    {
+        await Save.InvokeAsync();
+    }
+}

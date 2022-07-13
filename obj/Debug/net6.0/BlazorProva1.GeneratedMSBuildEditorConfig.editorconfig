@@ -34,6 +34,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[c:/Users/viniv/source/repos/CafeProva/BlazorProva1/Pages/ProdutoAdd.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHV0b0FkZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [c:/Users/viniv/source/repos/CafeProva/BlazorProva1/Shared/SurveyPrompt.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 

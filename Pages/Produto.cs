@@ -12,7 +12,7 @@ public class Produto
     [Required]
     [Range(1, 1000000, ErrorMessage = "Verificar Campo Preco")]
     public decimal Preco { get; set; } = decimal.Zero;
-    [Required]
+    [Required(ErrorMessage = "Verificar Campo Foto")]
     public string Foto { get; set; } = String.Empty;
     public string DataCadastro { get; set; } = DateTime.Now.ToString("dd/MM/yyyy");
     public List<ProdutoEstoque> Estoque { get; set; } = new List<ProdutoEstoque>();
